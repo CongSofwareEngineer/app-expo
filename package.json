@@ -5,14 +5,18 @@
   "scripts": {
     "start": "expo start",
     "reset-project": "node ./scripts/reset-project.js",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
     "web": "expo start --web",
     "lint": "expo lint"
   },
   "dependencies": {
     "@eslint/compat": "^1.3.1",
     "@expo/vector-icons": "^14.1.0",
+    "@react-native-firebase/app": "^22.2.1",
+    "@react-native-firebase/auth": "^22.2.1",
+    "@react-native-firebase/crashlytics": "^22.2.1",
+    "@react-native-firebase/messaging": "^22.2.1",
     "@react-navigation/bottom-tabs": "^7.3.10",
     "@react-navigation/elements": "^2.3.8",
     "@react-navigation/native": "^7.1.6",
@@ -20,6 +24,7 @@
     "eslint-plugin-unused-imports": "^4.1.4",
     "expo": "~53.0.12",
     "expo-blur": "~14.1.5",
+    "expo-build-properties": "~0.14.6",
     "expo-constants": "~17.1.6",
     "expo-font": "~13.3.1",
     "expo-haptics": "~14.1.4",

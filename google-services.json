@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "53527153456",
+    "project_id": "thay-hong-toan",
+    "storage_bucket": "thay-hong-toan.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:53527153456:android:f0abeed9d5ad8ad74b56f5",
+        "android_client_info": {
+          "package_name": "thayhongtoan.adnroid.com"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCuptmDi40aISz-0tFRk2BqGudatVW5eM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
