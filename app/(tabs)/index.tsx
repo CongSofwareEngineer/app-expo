@@ -18,15 +18,15 @@ export default function HomeScreen() {
       }
     >
      <View className="flex-1 items-center justify-center">
-      <Text className="text-xl font-bold text-white">
-        Welcome to Nativewind!
+      <Text className="text-xl font-bold text-black">
+        Welcome to Nativewind! cong
       </Text>
     </View>
     <ScrollView className="w-full  " horizontal >
       {
-        [1,2,3,23,434,5,356,456,5,6,7,8,].map(e=>{
+        [1,2,3,23,434,5,356,456,5,6,7,8,].map((e,index)=>{
           return (
-            <View key={e} className="min-w-10 bg-slate-400 rounded-lg px-3 py-2  m-2 flex justify-center items-center ">
+            <View key={index} className="min-w-10 bg-slate-400 rounded-lg px-3 py-2  m-2 flex justify-center items-center ">
               <Text className="text-white ">
                 {e}
               </Text>
@@ -37,7 +37,7 @@ export default function HomeScreen() {
     </ScrollView>
       <ThemedView style={styles.titleContainer}>
         <Text   >
-          Welcome! cong
+          Welcome! cong 2
         </Text>
         <HelloWave />
       </ThemedView>
@@ -98,3 +98,16 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
 });
+
+
+{
+  "message": {
+    "data":{
+    "foo":"bar",
+    "baz":"qux"
+  },
+    
+  "token":"c3vpvvysS7GMDe0YaLpOkC:APA91bFWL-RJfH36giriW8B95uayT4NLoX4aNJyUYcZk7IHvUs6EY8a0nmdsSG0YQUboy_QZqIQp2hKdtO3smSB8T8RGe8w4w_2Y5ENWEGtf4JExcAwaFhY"
+  },
+  
+}

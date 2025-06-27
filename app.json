@@ -6,30 +6,28 @@
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "appexpo",
+     "jsEngine": "jsc",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
+      "googleServicesFile": "./GoogleService-Info.plist",
+      "bundleIdentifier": "thayhongtoan",
       "supportsTablet": true,
       "entitlements": {
         "aps-environment": "production"
       },
       "infoPlist": {
-        "UIBackgroundModes": [
-          "remote-notification"
-        ]
-      },
-      "googleServicesFile": "./GoogleService-Info.plist",
-      "bundleIdentifier": "thayhongtoan"
+        "UIBackgroundModes": ["remote-notification"]
+      }
     },
     "android": {
+      "googleServicesFile": "./google-services.json",
+      "package": "thayhongtoan.adnroid.com",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff",
-        "googleServicesFile": "./google-services.json",
-        "package": "thayhongtoan.adnroid.com"
+        "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true,
-      "package": "com.thayhongtoan"
+      "edgeToEdgeEnabled": true
     },
     "web": {
       "bundler": "metro",
