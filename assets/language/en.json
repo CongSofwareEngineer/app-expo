@@ -1,0 +1,15 @@
+{
+    "common":{
+        "login": "Đăng nhập",
+        "register": "Đăng ký",
+        "logout": "Đăng xuất",
+        "home": "Trang chủ",
+        "search": "Tìm kiếm",
+        "cart": "Giỏ hàng",
+        "profile": "Tài khoản",
+        "language": "Ngôn ngữ"
+    },
+    "homeScreen":{
+        "titlePage": "Trang chủ"
+    }
+}

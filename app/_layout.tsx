@@ -1,22 +1,18 @@
-import {
-  DarkTheme,
-  DefaultTheme,
-  ThemeProvider,
-} from "@react-navigation/native";
-import { useFonts } from "expo-font";
-import { Stack } from "expo-router";
-import { StatusBar } from "expo-status-bar";
-import "../styles/global.css";
-import "react-native-reanimated";
+import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native'
+import { useFonts } from 'expo-font'
+import { Stack, usePathname } from 'expo-router'
+import { StatusBar } from 'expo-status-bar'
+import '../styles/global.css'
+import 'react-native-reanimated'
 
-import { useColorScheme } from "@/hooks/useColorScheme";
-import Permission from "@/components/Permission";
-import messaging from "@react-native-firebase/messaging";
-import * as Notifications from "expo-notifications";
-import { Text, View, AppRegistry, Platform } from "react-native";
-import { useEffect } from "react";
+import { useColorScheme } from '@/hooks/useColorScheme'
+import * as Notifications from 'expo-notifications'
+import { Platform } from 'react-native'
+import { useEffect } from 'react'
+import QueryClient from '@/components/QueryClient'
+import useLanguage from '@/hooks/useLanguage'
 
-console.log("RootLayout");
+console.log('RootLayout')
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowBanner: true,
@@ -24,58 +20,80 @@ Notifications.setNotificationHandler({
     shouldPlaySound: false,
     shouldSetBadge: false,
   }),
-});
+})
 
-messaging().setBackgroundMessageHandler(async remoteMessage => {
-  console.log('Message handled in the background!', remoteMessage);
-});
+// messaging().setBackgroundMessageHandler(async (remoteMessage) => {
+//   console.log('Message handled in the background!', remoteMessage)
+// })
+
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
+  const { translate } = useLanguage()
+  const patchName = usePathname()
+  console.log('patchName', patchName)
+
+  const colorScheme = useColorScheme()
   const [loaded] = useFonts({
-    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
-  });
+    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+  })
 
   useEffect(() => {
-    if (Platform.OS === "android") {
+    if (Platform.OS === 'android') {
       Notifications.getNotificationChannelsAsync().then((value) => {
-        console.log("====================================");
-        console.log({ getNotificationChannelsAsync:value });
-        console.log("====================================");
-      });
+        console.log('====================================')
+        console.log({ getNotificationChannelsAsync: value })
+        console.log('====================================')
+      })
     }
-    const notificationListener = Notifications.addNotificationReceivedListener(
-      (notification) => {
-        console.log("====================================");
-        console.log({ notification });
-        console.log("====================================");
-      }
-    );
+    const notificationListener = Notifications.addNotificationReceivedListener((notification) => {
+      console.log('====================================')
+      console.log({ notification })
+      console.log('====================================')
+    })
 
-    const responseListener =
-      Notifications.addNotificationResponseReceivedListener((response) => {
-        console.log({response});
-      });
+    const responseListener = Notifications.addNotificationResponseReceivedListener((response) => {
+      console.log({ response })
+    })
 
     return () => {
-      notificationListener.remove();
-      responseListener.remove();
-    };
-  }, []);
+      notificationListener.remove()
+      responseListener.remove()
+    }
+  }, [])
 
   if (!loaded) {
     // Async font loading only occurs in development.
-    return null;
+    return null
   }
 
   return (
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-      <Permission />
-    </ThemeProvider>
-  );
-}
+    <QueryClient>
+      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+        <Stack>
+          <Stack.Screen
+            name='(tab-navigation)'
+            options={{
+              headerShown: false,
+              // title: translate('common.back'),
+              headerBackTitleStyle: {
+                fontSize: 8,
+              },
+              headerTitle: translate('common.back'),
+              headerTitleStyle: {
+                fontSize: 8,
+              },
+              headerBackTitle: translate('common.back'),
+            }}
+          />
+          <Stack.Screen name='+not-found' />
+          <Stack.Screen name='login' options={{ title: translate('login.titlePage'), headerShown: false }} />
+          <Stack.Screen name='tc-store' options={{ title: translate('production.titlePage') }} />
+          <Stack.Screen name='tc-store/production' options={{ title: translate('production.titlePage') }} />
+          <Stack.Screen name='thayhongtoan/list-register' options={{ title: translate('production.titlePage') }} />
+        </Stack>
+        <StatusBar style='auto' />
 
+        {/* <Permission /> */}
+      </ThemeProvider>
+    </QueryClient>
+  )
+}

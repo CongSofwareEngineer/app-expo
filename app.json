@@ -6,7 +6,7 @@
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "appexpo",
-     "jsEngine": "jsc",
+    "jsEngine": "jsc",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
@@ -54,6 +54,13 @@
           "ios": {
             "useFrameworks": "static"
           }
+        }
+      ], 
+      [
+        "expo-secure-store",
+        {
+          "configureAndroidBackup": true,
+          "faceIDPermission": "Allow $(PRODUCT_NAME) to access your Face ID biometric data."
         }
       ]
     ],
