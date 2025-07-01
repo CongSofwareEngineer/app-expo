@@ -1,10 +1,12 @@
-import ThemedText from '@/components/ui/ThemedText'
+import { Link } from 'expo-router'
 import React from 'react'
 import { View } from 'react-native'
-import { styles } from './style'
+
 import ThemedInput from '@/components/ui/ThemedInput'
 import ThemedScrollView from '@/components/ui/ThemedScrollView'
-import { Link } from 'expo-router'
+import ThemedText from '@/components/ui/ThemedText'
+
+import { styles } from './style'
 
 const HomeScreen = () => {
   return (
@@ -16,7 +18,6 @@ const HomeScreen = () => {
       <Link href={'/login'}>
         <ThemedText type='link'>Product</ThemedText>
       </Link>
-
       <Link href={'/tc-store/production'}>
         <ThemedText type='link'>Product</ThemedText>
       </Link>

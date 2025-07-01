@@ -1,10 +1,10 @@
+import TabBarBackground from '@/components/ui/TabBarBackground'
+import { ColorThemes } from '@/constants/Colors'
 import { Tabs } from 'expo-router'
 import React from 'react'
 import { Platform, useColorScheme } from 'react-native'
-import { IconSymbol } from '../ui/IconSymbol'
-import { Colors } from '@/constants/Colors'
 import { HapticTab } from '../HapticTab'
-import TabBarBackground from '@/components/ui/TabBarBackground'
+import { IconSymbol } from '../ui/IconSymbol'
 
 const TabNavigation = () => {
   const colorScheme = useColorScheme()
@@ -12,7 +12,7 @@ const TabNavigation = () => {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarActiveTintColor: ColorThemes[colorScheme ?? 'light'].tint,
         headerShown: false,
         tabBarButton: HapticTab,
         tabBarBackground: TabBarBackground,

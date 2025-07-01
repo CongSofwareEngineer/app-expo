@@ -6,7 +6,13 @@
 const tintColorLight = '#0a7ea4'
 const tintColorDark = '#fff'
 
-export const Colors = {
+export enum Colors {
+  red = 'red',
+  green = 'green',
+  blue = 'blue',
+}
+
+export const ColorThemes = {
   light: {
     text: '#11181C',
     background: '#fff',

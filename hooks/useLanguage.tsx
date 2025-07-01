@@ -1,5 +1,6 @@
-import { LANGUAGE_SUPPORT, languageZustand, PATH_LANGUAGE, TYPE_LANGUAGE } from '@/zustand/language'
 import React from 'react'
+
+import { LANGUAGE_SUPPORT, languageZustand, PATH_LANGUAGE, TYPE_LANGUAGE } from '@/zustand/language'
 
 const useLanguage = () => {
   const { language, setLanguage } = languageZustand((state) => state)

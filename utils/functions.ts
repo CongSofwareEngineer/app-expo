@@ -15,3 +15,11 @@ export const numberWithCommas = (vale: string | number) => {
 export const ellipsis = (value: string, pre: number, post: number) => {
   return value.substring(0, pre) + '...' + value.substring(value.length - post)
 }
+
+export const sleep = async (time = 500) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(true)
+    }, time)
+  })
+}

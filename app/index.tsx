@@ -1,9 +1,12 @@
-import React from 'react'
-import { useUser } from '@/hooks/useUser'
 import { Redirect } from 'expo-router'
+import React from 'react'
+
+import { useUser } from '@/hooks/useUser'
 
 const CheckRoutePage = () => {
   const { isLogin, hydrate } = useUser()
+
+  console.log({ isLogin, hydrate })
 
   if (!hydrate) {
     return <></>

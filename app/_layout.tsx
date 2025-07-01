@@ -2,14 +2,17 @@ import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native
 import { useFonts } from 'expo-font'
 import { Stack, usePathname } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
-import '../styles/global.css'
-import 'react-native-reanimated'
 
-import { useColorScheme } from '@/hooks/useColorScheme'
+import 'react-native-reanimated'
+import '../styles/global.css'
+
 import * as Notifications from 'expo-notifications'
-import { Platform } from 'react-native'
 import { useEffect } from 'react'
+import { Platform } from 'react-native'
+
+import MyModal from '@/components/MyModal'
 import QueryClient from '@/components/QueryClient'
+import { useColorScheme } from '@/hooks/useColorScheme'
 import useLanguage from '@/hooks/useLanguage'
 
 console.log('RootLayout')
@@ -29,6 +32,7 @@ Notifications.setNotificationHandler({
 export default function RootLayout() {
   const { translate } = useLanguage()
   const patchName = usePathname()
+
   console.log('patchName', patchName)
 
   const colorScheme = useColorScheme()
@@ -39,15 +43,11 @@ export default function RootLayout() {
   useEffect(() => {
     if (Platform.OS === 'android') {
       Notifications.getNotificationChannelsAsync().then((value) => {
-        console.log('====================================')
         console.log({ getNotificationChannelsAsync: value })
-        console.log('====================================')
       })
     }
     const notificationListener = Notifications.addNotificationReceivedListener((notification) => {
-      console.log('====================================')
       console.log({ notification })
-      console.log('====================================')
     })
 
     const responseListener = Notifications.addNotificationResponseReceivedListener((response) => {
@@ -89,9 +89,10 @@ export default function RootLayout() {
           <Stack.Screen name='tc-store' options={{ title: translate('production.titlePage') }} />
           <Stack.Screen name='tc-store/production' options={{ title: translate('production.titlePage') }} />
           <Stack.Screen name='thayhongtoan/list-register' options={{ title: translate('production.titlePage') }} />
+          <Stack.Screen name='setting' options={{ title: translate('production.titlePage') }} />
         </Stack>
         <StatusBar style='auto' />
-
+        <MyModal />
         {/* <Permission /> */}
       </ThemeProvider>
     </QueryClient>

@@ -21,5 +21,12 @@
     },
     "production":{
         "titlePage": "Sản phẩm"
+    },
+    "setting":{
+        "titlePage": "Cài đặt",
+        "language": "Ngôn ngữ",
+        "darkMode": "Chế độ",
+        "dark": "Tối",
+        "light": "Sáng"
     }
 }

@@ -1,9 +1,10 @@
 import { create } from 'zustand'
 import { devtools, persist, StorageValue } from 'zustand/middleware'
+
+import { Storage } from '@/constants/Storage'
 import { Zustand } from '@/constants/Zustand'
 import { Mode } from '@/constants/app'
 import { getDataLocal, saveDataLocal } from '@/utils/storage'
-import { Storage } from '@/constants/Storage'
 
 interface ModeState {
   [Zustand.Mode]: Mode
@@ -29,6 +30,7 @@ export const mode = create<ModeState>()(
           removeItem: () => null,
           setItem: (_: any, value: StorageValue<ModeState>) => {
             const mode = value.state[Zustand.Mode]
+
             saveDataLocal(Storage.Mode, mode)
           },
         },
@@ -36,6 +38,7 @@ export const mode = create<ModeState>()(
         onRehydrateStorage: () => (state) => {
           if (state) {
             const data = getDataLocal(Storage.Mode)
+
             if (data) {
               state[Zustand.Mode] = data
             }
