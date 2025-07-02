@@ -12,7 +12,7 @@ type Props = {
 const ThemedTouchable = ({ loading, typeBtn = 'default', style, ...props }: Props) => {
   return (
     <TouchableOpacity
-      style={[styles.container]}
+      style={[styles.container, style]}
       {...props}
       activeOpacity={0.8}
       disabled={loading || props?.disabled}
@@ -43,6 +43,9 @@ const styles = StyleSheet.create({
   },
   containerChildren: {
     flexGrow: 1,
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
     gap: 8,
     justifyContent: 'center',
     alignItems: 'center',

@@ -8,10 +8,6 @@ const CheckRoutePage = () => {
 
   console.log({ isLogin, hydrate })
 
-  if (!hydrate) {
-    return <></>
-  }
-
   if (isLogin) {
     return <Redirect href='/home' />
   }

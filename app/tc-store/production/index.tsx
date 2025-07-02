@@ -1,12 +1,13 @@
-import ThemedText from '@/components/ui/ThemedText'
 import React from 'react'
-import { ScrollView } from 'react-native'
+
+import ThemedScrollView from '@/components/ui/ThemedScrollView'
+import ThemedText from '@/components/ui/ThemedText'
 
 const ProductionScreen = () => {
   return (
-    <ScrollView>
+    <ThemedScrollView>
       <ThemedText>ProductionScreen</ThemedText>
-    </ScrollView>
+    </ThemedScrollView>
   )
 }
 

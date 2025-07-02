@@ -10,16 +10,20 @@ export enum Colors {
   red = 'red',
   green = 'green',
   blue = 'blue',
+  yellow = 'yellow',
 }
 
 export const ColorThemes = {
   light: {
     text: '#11181C',
-    background: '#fff',
+    background: '#ECEDEE',
     tint: tintColorLight,
     icon: '#687076',
     tabIconDefault: '#687076',
     tabIconSelected: tintColorLight,
+    backgroundModal: '#000000cc',
+    backgroundContentModal: '#d1d5db',
+    backgroundHeaderPage: '#d1d5db',
   },
   dark: {
     text: '#ECEDEE',
@@ -28,5 +32,8 @@ export const ColorThemes = {
     icon: '#9BA1A6',
     tabIconDefault: '#9BA1A6',
     tabIconSelected: tintColorDark,
+    backgroundModal: '#000000cc',
+    backgroundContentModal: '#1f2937',
+    backgroundHeaderPage: '#d1d5db',
   },
 }

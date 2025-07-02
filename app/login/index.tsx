@@ -33,7 +33,7 @@ export default function LoginScreen() {
   const handleLogin = async (data: FormLogin) => {
     setIsLoading(true)
     console.log({ data })
-    await sleep(3000)
+    await sleep(1000)
     if (data.userName === 'admin' && data.password === 'password') {
       router.replace('/home')
       // router.()

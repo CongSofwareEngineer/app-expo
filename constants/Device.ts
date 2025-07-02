@@ -1,6 +1,7 @@
 import { Dimensions, PixelRatio } from 'react-native'
 
 const guidelineBaseWidth = 375
+
 export const MYWIDTH = Dimensions.get('window').width
 export const MYHEIGHT = Dimensions.get('window').height
 

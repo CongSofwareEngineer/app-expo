@@ -3,8 +3,8 @@ import { devtools, persist } from 'zustand/middleware'
 
 import MessageEN from '@/assets/language/en.json'
 import MessageVN from '@/assets/language/vn.json'
-import { getDataLocal, saveDataLocal } from '@/utils/storage'
 import { Storage } from '@/constants/Storage'
+import { getDataLocal, saveDataLocal } from '@/utils/storage'
 
 export enum LANGUAGE_SUPPORT {
   EN = 'en',

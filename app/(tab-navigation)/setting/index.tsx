@@ -1,6 +1,8 @@
+import { useRouter } from 'expo-router'
 import React from 'react'
 import { SafeAreaView, View } from 'react-native'
 
+import ModalWarning from '@/components/ModalWarning'
 import ThemedCheckbox from '@/components/ui/ThemedCheckbox'
 import ThemedScrollView from '@/components/ui/ThemedScrollView'
 import ThemedText from '@/components/ui/ThemedText'
@@ -9,23 +11,23 @@ import { Colors } from '@/constants/Colors'
 import useLanguage from '@/hooks/useLanguage'
 import useModal from '@/hooks/useModal'
 import useMode from '@/hooks/useMode'
+import { useUser } from '@/hooks/useUser'
 
 const SettingScreen = () => {
   const { translate } = useLanguage()
   const { mode, setMode } = useMode()
+  const { setUser } = useUser()
   const { openModal } = useModal()
+  const router = useRouter()
 
   const handleLogout = async () => {
-    const content = () => {
-      return (
-        <View>
-          <ThemedText>Close</ThemedText>
-        </View>
-      )
+    const callback = async () => {
+      setUser(null)
+      router.replace('/login')
     }
 
     openModal({
-      content: content(),
+      content: <ModalWarning onSubmit={callback} title={translate('warning.logout')} />,
     })
   }
 
@@ -43,7 +45,6 @@ const SettingScreen = () => {
             </ThemedCheckbox>
           </View>
         </View>
-
         <View className='gap-2'>
           <ThemedText>{`${translate('setting.language')} :`}</ThemedText>
           <View className='flex flex-row gap-10 w-full'>

@@ -7,13 +7,13 @@ import 'react-native-reanimated'
 import '../styles/global.css'
 
 import * as Notifications from 'expo-notifications'
-import { useEffect } from 'react'
-import { Platform } from 'react-native'
 
 import MyModal from '@/components/MyModal'
 import QueryClient from '@/components/QueryClient'
 import { useColorScheme } from '@/hooks/useColorScheme'
 import useLanguage from '@/hooks/useLanguage'
+import { useThemeColor } from '@/hooks/useThemeColor'
+import { useUser } from '@/hooks/useUser'
 
 console.log('RootLayout')
 Notifications.setNotificationHandler({
@@ -32,35 +32,38 @@ Notifications.setNotificationHandler({
 export default function RootLayout() {
   const { translate } = useLanguage()
   const patchName = usePathname()
+  const colorScheme = useColorScheme()
+  const { isLogin, hydrate } = useUser()
+
+  const backgroundHeaderPage = useThemeColor('backgroundHeaderPage')
 
   console.log('patchName', patchName)
 
-  const colorScheme = useColorScheme()
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   })
 
-  useEffect(() => {
-    if (Platform.OS === 'android') {
-      Notifications.getNotificationChannelsAsync().then((value) => {
-        console.log({ getNotificationChannelsAsync: value })
-      })
-    }
-    const notificationListener = Notifications.addNotificationReceivedListener((notification) => {
-      console.log({ notification })
-    })
+  // useEffect(() => {
+  //   if (isAndroid()) {
+  //     Notifications.getNotificationChannelsAsync().then((value) => {
+  //       console.log({ getNotificationChannelsAsync: value })
+  //     })
+  //   }
+  //   const notificationListener = Notifications.addNotificationReceivedListener((notification) => {
+  //     console.log({ notification })
+  //   })
 
-    const responseListener = Notifications.addNotificationResponseReceivedListener((response) => {
-      console.log({ response })
-    })
+  //   const responseListener = Notifications.addNotificationResponseReceivedListener((response) => {
+  //     console.log({ response })
+  //   })
 
-    return () => {
-      notificationListener.remove()
-      responseListener.remove()
-    }
-  }, [])
+  //   return () => {
+  //     notificationListener.remove()
+  //     responseListener.remove()
+  //   }
+  // }, [])
 
-  if (!loaded) {
+  if (!loaded || !hydrate) {
     // Async font loading only occurs in development.
     return null
   }
@@ -68,7 +71,7 @@ export default function RootLayout() {
   return (
     <QueryClient>
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <Stack>
+        <Stack initialRouteName='login'>
           <Stack.Screen
             name='(tab-navigation)'
             options={{
@@ -88,7 +91,15 @@ export default function RootLayout() {
           <Stack.Screen name='login' options={{ title: translate('login.titlePage'), headerShown: false }} />
           <Stack.Screen name='tc-store' options={{ title: translate('production.titlePage') }} />
           <Stack.Screen name='tc-store/production' options={{ title: translate('production.titlePage') }} />
-          <Stack.Screen name='thayhongtoan/list-register' options={{ title: translate('production.titlePage') }} />
+          <Stack.Screen
+            name='thayhongtoan/list-register'
+            options={{
+              title: translate('production.titlePage'),
+              // headerStyle: {
+              //   backgroundColor: backgroundHeaderPage,
+              // },
+            }}
+          />
           <Stack.Screen name='setting' options={{ title: translate('production.titlePage') }} />
         </Stack>
         <StatusBar style='auto' />

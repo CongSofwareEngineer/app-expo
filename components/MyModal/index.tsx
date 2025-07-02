@@ -1,11 +1,15 @@
 import Ionicons from '@expo/vector-icons/Ionicons'
 import React from 'react'
-import { Modal, SafeAreaView, ScrollView, View } from 'react-native'
+import { Modal, SafeAreaView, ScrollView, StyleSheet, View } from 'react-native'
 
 import useModal from '@/hooks/useModal'
+import { useThemeColor } from '@/hooks/useThemeColor'
 
 const MyModal = () => {
   const { modal, closeModal } = useModal()
+  const backgroundModal = useThemeColor('backgroundModal')
+  const backgroundContentModal = useThemeColor('backgroundContentModal')
+  const color = useThemeColor('text')
 
   return modal?.open ? (
     <Modal
@@ -22,32 +26,38 @@ const MyModal = () => {
       }}
     >
       <ScrollView
-        contentContainerStyle={{
-          flexGrow: 1,
-          justifyContent: 'center',
-        }}
-        className='bg-black/80'
+        contentContainerStyle={[
+          styles.root,
+          {
+            backgroundColor: backgroundModal,
+          },
+        ]}
       >
-        <SafeAreaView
-          className='flex p-5'
-          style={{
-            flexGrow: 1,
-            justifyContent: 'center',
-          }}
-        >
+        <SafeAreaView className='flex p-5' style={styles.root}>
           <View className='p-5'>
-            <View className='bg-gray-800 rounded-lg  p-3'>
-              <View className='flex flex-row justify-end absolute text-right w-full right-[5px] top-[5px]'>
-                <Ionicons
-                  name='close'
-                  size={20}
-                  color='white'
-                  onPress={() => {
-                    closeModal()
-                    modal?.onClose?.()
-                  }}
-                />
-              </View>
+            <View
+              style={[
+                styles.content,
+                {
+                  backgroundColor: backgroundContentModal,
+                },
+              ]}
+              className='rounded-lg  p-3'
+            >
+              {modal?.showIconClose && (
+                <View style={styles.iconClose}>
+                  <Ionicons
+                    name='close'
+                    size={24}
+                    color={color}
+                    onPress={() => {
+                      closeModal()
+                      modal?.onClose?.()
+                    }}
+                  />
+                </View>
+              )}
+
               {modal.content}
             </View>
           </View>
@@ -60,3 +70,34 @@ const MyModal = () => {
 }
 
 export default MyModal
+
+const styles = StyleSheet.create({
+  root: {
+    flexGrow: 1,
+    justifyContent: 'center',
+  },
+  content: {
+    borderRadius: 8,
+    padding: 20,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+
+  // flex flex-row justify-end absolute text-right w-full right-[5px] top-[5px]
+  iconClose: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    textAlign: 'right',
+    width: '100%',
+    position: 'absolute',
+    right: 5,
+    top: 5,
+  },
+})

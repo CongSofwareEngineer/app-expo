@@ -1,10 +1,12 @@
-import { View, Text } from 'react-native'
 import React from 'react'
+import { Text } from 'react-native'
+
+import ThemedScrollView from '@/components/ui/ThemedScrollView'
 
 export default function ListRegisterScreen() {
   return (
-    <View>
+    <ThemedScrollView>
       <Text>ListRegister</Text>
-    </View>
+    </ThemedScrollView>
   )
 }

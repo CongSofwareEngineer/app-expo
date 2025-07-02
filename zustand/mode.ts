@@ -1,3 +1,4 @@
+import { useColorScheme } from 'react-native'
 import { create } from 'zustand'
 import { devtools, persist, StorageValue } from 'zustand/middleware'
 
@@ -37,11 +38,10 @@ export const mode = create<ModeState>()(
 
         onRehydrateStorage: () => (state) => {
           if (state) {
-            const data = getDataLocal(Storage.Mode)
+            const mode = useColorScheme()
+            const modeLocal = getDataLocal(Storage.Mode)
 
-            if (data) {
-              state[Zustand.Mode] = data
-            }
+            state[Zustand.Mode] = modeLocal || mode
             state.hydrate = true
           }
         },

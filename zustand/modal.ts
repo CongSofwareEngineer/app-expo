@@ -10,6 +10,7 @@ type Modal = {
   content?: React.ReactNode
   afterClose?: () => any
   onClose?: () => any
+  showIconClose?: boolean
 }
 
 type ModalState = {
@@ -26,6 +27,7 @@ export const modalZustand = create<ModalState>()(
       openModal: (param?: Modal) => {
         set({
           [Zustand.Modal]: {
+            showIconClose: true,
             ...param,
             open: true,
           },

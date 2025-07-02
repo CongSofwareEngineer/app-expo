@@ -1,5 +1,4 @@
 import { Storage } from '@/constants/Storage'
-// import { MMKV } from 'react-native-mmkv'
 
 // export const storage = new MMKV({
 //   encryptionKey: 'my-super-secret-key',
@@ -22,16 +21,18 @@ export const saveDataLocal = (key: Storage, value: any) => {
 
 export const getDataLocal = (key: Storage, defaultData: any = '') => {
   try {
-    const jsonValue = storage.getString(key)
-    return jsonValue != null ? JSON.parse(jsonValue) : defaultData
+    const jsonValue = storage.getString(key) ?? ''
+
+    return JSON.parse(jsonValue)
   } catch {
-    // saving error
+    // return null
   }
 }
 
 export const removeDataLocal = (key: Storage) => {
   try {
     storage.delete(key)
+
     return true
   } catch {
     return false

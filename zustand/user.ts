@@ -1,8 +1,9 @@
 import { create } from 'zustand'
 import { devtools, persist, StorageValue } from 'zustand/middleware'
+
+import { Storage } from '@/constants/Storage'
 import { Zustand } from '@/constants/Zustand'
 import { getDataLocal, saveDataLocal } from '@/utils/storage'
-import { Storage } from '@/constants/Storage'
 
 interface UserProps {
   userName: string
@@ -36,12 +37,14 @@ export const userZustand = create<UserState>()(
           removeItem: () => null,
           setItem: (_: any, value: StorageValue<UserState>) => {
             const user = value.state[Zustand.User]
+
             saveDataLocal(Storage.User, user)
           },
         },
         onRehydrateStorage: () => (state) => {
           if (state) {
             const data = getDataLocal(Storage.User) as UserProps
+
             if (data) {
               state[Zustand.User] = data
             }
